@@ -1,19 +1,37 @@
 const mongoose = require('mongoose');
 
 const patientSchema = new mongoose.Schema({
-    name:{
+    name: {
         type: String,
         required: true,
     },
-    email:{
+    email: {
         type: String,
         required: true
     },
-    phone:{
+    phone: {
         type: String,
         required: true
-    }
-},{
+    },
+    doctor: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Doctor",
+        required: true
+    },
+    reports: [
+        {
+            status: {
+                type: String,
+                enum: ["Negative", "Travelled-Quarantine", "Symptoms-Quarantine", "Positive-Admit"],
+                required: true
+            },
+            date: {
+                type: Date,
+                default: Date.now()
+            }
+        }
+    ],
+}, {
     timestamps: true
 });
 
