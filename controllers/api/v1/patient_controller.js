@@ -1,5 +1,6 @@
 const Patient = require('../../../models/patients');
 
+// register the patient
 module.exports.createPatient = async function (req, res) {
     try {
         let patient = await Patient.findOne({ phone: req.body.phone });
@@ -26,6 +27,7 @@ module.exports.createPatient = async function (req, res) {
     }
 }
 
+// create the reports
 module.exports.createReport = async function(req, res){
     try {
         let patient = await Patient.findById(req.params.id);
@@ -46,6 +48,7 @@ module.exports.createReport = async function(req, res){
     }
 }
 
+// get all reports
 module.exports.allReports= async function(req, res){
     try {
         let allReports = await Patient.findById(req.params.id);
@@ -64,6 +67,7 @@ module.exports.allReports= async function(req, res){
     }
 }
 
+// get reports status wise
 module.exports.getStatus = async function(req, res){
     try {
         let status = await Patient.find({reports: {$elemMatch: {status: req.params.status}}})

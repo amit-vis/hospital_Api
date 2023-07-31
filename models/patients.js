@@ -1,3 +1,4 @@
+// create a Schema for patient
 const mongoose = require('mongoose');
 
 const patientSchema = new mongoose.Schema({
@@ -18,6 +19,8 @@ const patientSchema = new mongoose.Schema({
         ref: "Doctor",
         required: true
     },
+
+    // create a Schema for reports
     reports: [
         {
             status: {
