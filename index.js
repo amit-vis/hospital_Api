@@ -5,9 +5,13 @@ const port = 3000
 const db = require('./config/mongoose');
 const passport = require('passport');
 const passportJWT = require('./config/passport_Jwt_stratergy');
+const bodyParser = require('body-parser');
 
 // use the express json
 app.use(express.json());
+
+// body parser
+app.use(bodyParser.urlencoded({extended: false}))
 
 // use express router
 app.use('/', require('./routes'));
